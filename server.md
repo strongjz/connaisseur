@@ -7,6 +7,7 @@ bjoern - python2
 gunicorn - high error/timeout rate at 1 worker per pod, simple, good according to https://medium.com/django-deployment/which-wsgi-server-should-i-use-a70548da6a83, errors even at 4 workers, 1 of 5 invocations of integration test failed on local kind cluster
 "Error from server (InternalError): error when creating "connaisseur/tests/integration/valid_container_with_unsigned_init_container_image.yml": Internal error occurred: failed calling webhook "connaisseur-svc.connaisseur.svc": Post "https://connaisseur-svc.connaisseur.svc:443/mutate?timeout=30s": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
 !!! also as set up currently, gunicorn needs writable /tmp dir, which can affect the k8s NODE -> either fix or no solution
+-> setting access-logfile and error-logfile to '-' didnt work either, so I'll just drop it from testing
 
 uwsgi - works well 2 processes; really bad according to https://www.appdynamics.com/blog/engineering/a-performance-analysis-of-python-wsgi-servers-part-2/, 
 error at 2 processes (felt like fewer though):
