@@ -1,4 +1,4 @@
-# ADR 4: WSGI Server
+# ADR 7: WSGI Server
 
 ## Status
 
