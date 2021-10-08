@@ -24,7 +24,7 @@ There's plenty of WSGI server around and the question poses itself, which one to
 
 Contenders were Bjoern, Cheroot, Flask, Gunicorn and uWSGI. Bjoern was immediately dropped, since it works only with Python2. Gunicorn was tested for a bit, but since it delivered worse results than the others and it requires a writable log directory, it was also dropped from contention.
 
-The remaining three were tested over a rather long of development, i.e. from before the first bit of validation parallelization to after the 2.0 release. All tests were run on local minikube/kind clusters with rather constrained resources in the expectation that this will still provide reasonable insight into the servers' behaviour on regular production clusters.
+The remaining three were tested over a rather long time of development, i.e. from before the first bit of validation parallelization to after the 2.0 release. All tests were run on local minikube/kind clusters with rather constrained resources in the expectation that this will still provide reasonable insight into the servers' behavior on regular production clusters.
 
 #### Test results
 Since the results span a longer timeframe and at least at first performed to find some way to distinguish the servers instead of having a clear plan, some tests feature a different configuration. If not specified different Cheroot was run with default configuration (minimum number of threads 10, no maximum limit), Flask in its default configuration and uWSGI with 2 processes and 1 thread (low because it already has a bigger footprint when idle to begin with). Connaisseur itself was configured with its default of 3 pods.
