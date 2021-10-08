@@ -22,7 +22,7 @@ did cause anguish among users, see e.g. [issue 11](https://github.com/sse-secure
 
 There's plenty of WSGI server around and the question poses itself, which one to pick. Flask itself has a [list of servers](https://flask.palletsprojects.com/en/1.1.x/deploying/), there's comparisons around, for example [here](https://medium.com/django-deployment/which-wsgi-server-should-i-use-a70548da6a83) and [here](https://www.appdynamics.com/blog/engineering/a-performance-analysis-of-python-wsgi-servers-part-2/). The choice, which WSGI servers to test was somewhat arbitrary among better performing ones in the posts.
 
-Contenders were Bjoern, Cheroot, Flask, Gunicorn and uWSGI. Bjoern was immediately dropped, since it works only with Python2. Gunicorn was tested for a bit, but since it delivered worse results than the others and it requires a writable log directory, it was also dropped from contention.
+Contenders were Bjoern, Cheroot, Flask, Gunicorn and uWSGI. Bjoern was immediately dropped, since it worked only with Python2. Later, during testing Bjoern did support Python3, but no TLS, so we stuck to dropping it. Gunicorn was tested for a bit, but since it delivered worse results than the others and it requires a writable `worker-tmp-dir` directory, it was also dropped from contention.
 
 The remaining three were tested over a rather long time of development, i.e. from before the first bit of validation parallelization to after the 2.0 release. All tests were run on local minikube/kind clusters with rather constrained resources in the expectation that this will still provide reasonable insight into the servers' behavior on regular production clusters.
 
