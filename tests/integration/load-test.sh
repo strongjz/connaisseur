@@ -24,8 +24,19 @@ else
   echo 'Successfully passed test with complex requests'
 fi
 
+echo 'Cleaning up before second test'
+kubectl delete all -lloadtest=loadtest
+
 echo 'Testing Connaisseur with many requests...'
-# TODO
+parallel --jobs 20 ./testn.sh {1} :::: <(seq 200)
+
+NUMBER_PODS=$(kubectl get pod  | grep redis | wc -l)
+if [[ ${NUMBER_PODS} != "200" ]]; then
+  echo "Failed load test. Only ${NUMBER_PODS}/200 pods were created"
+  exit 1
+else
+  echo "Successfully passed load test"
+fi
 
 echo 'Uninstalling Connaisseur...'
 helm uninstall connaisseur --namespace connaisseur || { echo 'Failed to uninstall Connaisseur'; exit 1; }

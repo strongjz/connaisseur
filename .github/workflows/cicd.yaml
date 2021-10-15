@@ -217,9 +217,10 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: images
-      - name: Install yq
+      - name: Install yq and parallel
         run: |
           sudo snap install yq
+          sudo apt update && sudo apt install -y parallel
       - name: Load Docker images
         run: |
           docker load -i ${GITHUB_SHA}_image.tar
