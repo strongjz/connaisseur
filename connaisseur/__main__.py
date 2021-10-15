@@ -8,7 +8,7 @@ from cheroot.server import HTTPServer
 from cheroot.ssl.builtin import BuiltinSSLAdapter
 from cheroot.wsgi import Server, PathInfoDispatcher
 
-from connaisseur.flask_server import *
+from connaisseur.flask_server import APP, healthz, mutate, readyz
 
 if __name__ == "__main__":
     LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
