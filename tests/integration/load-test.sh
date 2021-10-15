@@ -17,8 +17,6 @@ kubectl apply -f tests/integration/loadtest.yaml >output.log 2>&1 || true
 if [[ ! ("$(cat output.log)" =~ 'deployment.apps/redis-with-many-instances created' && "$(cat output.log)" =~ 'pod/pod-with-many-containers created' && "$(cat output.log)" =~ 'pod/pod-with-many-containers-and-init-containers created' && "$(cat output.log)" =~ 'pod/pod-with-some-containers-and-init-containers created' && "$(cat output.log)" =~ 'pod/pod-with-coinciding-containers-and-init-containers created') ]]; then
   echo 'Failed test with complex requests. Output:'
   cat output.log
-  kubectl logs -n connaisseur deployment/connaisseur-deployment > output.log
-  cat output.log
   exit 1
 else
   echo 'Successfully passed test with complex requests'
