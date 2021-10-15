@@ -95,7 +95,7 @@ spec:
   - name: container7
     image: sonarqube
 
---- 
+---
 
 apiVersion: v1
 kind: Pod
@@ -179,7 +179,7 @@ spec:
   - name: init2
     image: redis
   - name: init3
-    image: node 
+    image: node
 </pre>
 </details>
 
@@ -230,7 +230,7 @@ spec:
 Afterwards, we checked how many of the pods were actually created.
 
 | Server                                                |  Created pods (parallel 20 jobs)                                     | Created pods (parallel 50 jobs)           |
-| -------------------------------------------------- | ----------------------------------------------------  | ----------------- | 
+| -------------------------------------------------- | ----------------------------------------------------  | ----------------- |
 | Cheroot | 173 | 78 |
 | Cheroot (numthreads=40) | - | 81 |
 | Flask | 173 | 81 |
@@ -247,26 +247,26 @@ Shown is representative sample from across multiple invocations only at 20 jobs,
 
 Cheroot
 ```
-NAME                                      CPU(cores)   MEMORY(bytes)   
-connaisseur-deployment-644458d686-2tfjp   331m         46Mi            
-connaisseur-deployment-644458d686-kfzdq   209m         44Mi            
+NAME                                      CPU(cores)   MEMORY(bytes)
+connaisseur-deployment-644458d686-2tfjp   331m         46Mi
+connaisseur-deployment-644458d686-kfzdq   209m         44Mi
 connaisseur-deployment-644458d686-t57lp   321m         53Mi
 ```
 
 Flask
 ```
-NAME                                      CPU(cores)   MEMORY(bytes)   
-connaisseur-deployment-644458d686-t6c24   381m         42Mi            
-connaisseur-deployment-644458d686-thgzd   328m         42Mi            
+NAME                                      CPU(cores)   MEMORY(bytes)
+connaisseur-deployment-644458d686-t6c24   381m         42Mi
+connaisseur-deployment-644458d686-thgzd   328m         42Mi
 connaisseur-deployment-644458d686-wcprp   235m         38Mi
 ```
 
 uWSGI (1 process, 10 threads)
 ```
-NAME                                     CPU(cores)   MEMORY(bytes)   
-connaisseur-deployment-d86fbfcd8-9c5m7   129m         63Mi            
-connaisseur-deployment-d86fbfcd8-hv6sp   309m         67Mi            
-connaisseur-deployment-d86fbfcd8-w46dz   298m         67Mi 
+NAME                                     CPU(cores)   MEMORY(bytes)
+connaisseur-deployment-d86fbfcd8-9c5m7   129m         63Mi
+connaisseur-deployment-d86fbfcd8-hv6sp   309m         67Mi
+connaisseur-deployment-d86fbfcd8-w46dz   298m         67Mi
 ```
 
 
@@ -289,7 +289,7 @@ In addition, it seems to be less known and not among the servers that the Flask 
 #### Option 1.2: uWSGI
 uWSGI (narrowly) has the best showing for complex requests, but performs worst for strong load. However, if trying to deal with a massive load, scaling its resources allows uWSGI to significantly outperform the other options for very massive load.
 
-Its memory footprint is higher than for Cheroot and Flask, but its CPU footprint is on par with Cheroot and slightly better than Flask's. 
+Its memory footprint is higher than for Cheroot and Flask, but its CPU footprint is on par with Cheroot and slightly better than Flask's.
 
 
 #### Decision
