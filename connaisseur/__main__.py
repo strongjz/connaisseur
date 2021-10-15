@@ -29,19 +29,17 @@ if __name__ == "__main__":
     )
 
     HTTPServer.ssl_adapter = BuiltinSSLAdapter(
-        certificate='/app/certs/tls.crt',
-        private_key='/app/certs/tls.key'
+        certificate="/app/certs/tls.crt", private_key="/app/certs/tls.key"
     )
 
     # the host needs to be set to `0.0.0.0` so it can be reachable from outside the
     # container
     path_map = {
-        '/mutate': mutate,
-        '/health': healthz,
-        '/ready': readyz,
+        "/mutate": mutate,
+        "/health": healthz,
+        "/ready": readyz,
     }
-    log = logging.getLogger('wsgidav')
+    log = logging.getLogger("wsgidav")
     paths = PathInfoDispatcher(path_map)
-    server = Server(('0.0.0.0', 5000), APP)
+    server = Server(("0.0.0.0", 5000), APP)
     server.start()
-
