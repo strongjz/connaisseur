@@ -26,7 +26,7 @@ echo 'Cleaning up before second test'
 kubectl delete all -lloadtest=loadtest
 
 echo 'Testing Connaisseur with many requests...'
-parallel --jobs 20 ./testn.sh {1} :::: <(seq 200)
+parallel --jobs 20 ./tests/integration/cause_load.sh {1} :::: <(seq 200)
 
 NUMBER_PODS=$(kubectl get pod  | grep redis | wc -l)
 if [[ ${NUMBER_PODS} != "200" ]]; then
