@@ -2,7 +2,7 @@
 
 ## Status
 
-Proposed
+Accepted
 
 ## Context
 
@@ -293,6 +293,8 @@ Its memory footprint is higher than for Cheroot and Flask, but its CPU footprint
 
 
 #### Decision
+
+We chose option 1.2 and will for now go forward with Cheroot as the WSGI server. The decision was based on the server performing best in the relevant parts of the stress and load tests.
 
 ### Choice 2: Server configuration
 TBD depending on choice 1
