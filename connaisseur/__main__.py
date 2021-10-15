@@ -40,6 +40,7 @@ if __name__ == "__main__":
         '/health': healthz,
         '/ready': readyz,
     }
+    log = logging.getLogger('wsgidav')
     paths = PathInfoDispatcher(path_map)
     server = Server(('0.0.0.0', 5000), APP)
     server.start()

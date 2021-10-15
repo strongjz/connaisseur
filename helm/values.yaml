@@ -146,7 +146,7 @@ namespacedValidation:
 automaticChildApproval:
   enabled: true
 
-# debug: true
+debug: true
 
 # alerting is implemented in form of simple POST requests with json payload
 # you can use and/or adapt the predefined Slack/OpsGenie/Keybase templates and the examples below
