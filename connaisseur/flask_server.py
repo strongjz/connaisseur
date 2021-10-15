@@ -47,6 +47,26 @@ def mutate():
     try:
         logging.debug(request.json)
         admission_request = AdmissionRequest(request.json)
+    except Exception as err:
+        if isinstance(err, BaseConnaisseurException):
+            err_log = str(err)
+            msg = err.user_msg  # pylint: disable=no-member
+        else:
+            err_log = str(traceback.format_exc())
+            msg = "unknown error. please check the logs."
+        # send_alerts(admission_request, False, msg) TODO needs fixing
+        logging.error(err_log)
+        uid = request.json.get("uid", "0")
+        return jsonify(
+            get_admission_review(
+                uid,
+                False,
+                msg=msg,
+                detection_mode=DETECTION_MODE,
+            )
+        )
+
+    try:
         response = __admit(admission_request)
     except Exception as err:
         if isinstance(err, BaseConnaisseurException):

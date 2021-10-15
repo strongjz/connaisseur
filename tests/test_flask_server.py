@@ -64,7 +64,7 @@ def m_config(monkeypatch, sample_nv1):
 
 @pytest.mark.parametrize(
     "index, allowed, status_code, detection_mode",
-    [(0, True, 202, 0), (5, False, 403, 0)],
+    [(0, True, 202, 0), (5, False, 403, 0), (7, False, 403, 0)],
 )
 def test_mutate(
     monkeypatch,

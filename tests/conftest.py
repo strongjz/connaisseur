@@ -348,6 +348,7 @@ def adm_req_samples(m_ad_schema_path):
             "err",
             "invalid_image",
             "auto_approval",
+            "invalid",
         )
     ]
 
