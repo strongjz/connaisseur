@@ -180,7 +180,7 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: images
       - uses: ./.github/actions/trivy
@@ -213,7 +213,7 @@ jobs:
           - 56243:56243
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: images
       - name: Install yq
@@ -250,7 +250,7 @@ jobs:
       - name: Install yq
         run: |
           sudo snap install yq
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: images
       - uses: ./.github/actions/k8s-version-config
